@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.table{
+			width:100%;
+			border:1px solid #f40;
+			overflow:hidden;
+		}	
+		.table div{
+			border-right:1px solid #f40;
+			border-bottom:1px solid #f40;
+			height:40px;
+			float:left;
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			text-align:center;
+			line-height:40px;
+			word-break:break-all;
+			overflow:hidden;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="table" id="table"></div>
+</body>
+</html>
+<script>
+	var row=3,column=3,tEle=document.getElementById('table'),proportion=(100/column);
+	for(var i=1;i<row*column+1;i++){
+		var divObj=document.createElement("div");
+		divObj.innerHTML=i;
+		divObj.style.width=proportion+'%';
+		if(i%column==0){
+			divObj.style.borderRightWidth=0;
+		}
+		if(i>(row-1)*column){
+			divObj.style.borderBottomWidth=0;
+		}
+		tEle.appendChild(divObj);
+	}
+</script>
