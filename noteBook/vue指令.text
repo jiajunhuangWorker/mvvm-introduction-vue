@@ -1,0 +1,11 @@
+createTime:20190526
+author:lucas
+studayPlace:慕课网
+versions:Vue2.0
+
+指令
+1.v-text和v-html区别
+v-html:dom节点将被渲染
+v-text:不渲染dom
+
+2.

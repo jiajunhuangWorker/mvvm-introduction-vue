@@ -1,66 +1,35 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-// import App from './App'
-// import router from './router'
+import App from './App'
 //全局注册组件start
-	Vue.component('my-header',{
-		template:'<p>this is my header </p>',
-		// data:{
-		// 	try:'我是trys'
-		// }
-	})
+Vue.component('my-header',{
+	template:'<p style="color:#252525">this is my header</p>'
+})
 //全局注册组件end
 //局部组件
-	var myHeaderChild = {
-		template:'<div>我是myheaderChilder引入</div>'
+	var myfooter = {
+		template:'<div style="color:red">我是myfooter引入</div>'
 	}
-	var myHeader={
-		template:'<div><header-child></header-child><br/>我是myHeader的文字</div>',
-		components: {
-			'header-child' : myHeaderChild
+	var	myBodyChild={
+		template:'<div>this is my body child</div>'
+	}
+	var myBody={
+		template:'<div style="color:#ccc"><body-child></body-child><br/>我是myBody的文字</div>'
+		,components:{
+			'body-child' : myBodyChild
 		}
 	}
-	
-//局部组件
-// Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-// let myVue = new Vue({
-//   el: '#app',
-//   router,
-//   components: { App },
-//   template: '<App/>',
-//   data: { 
-//   	fruit: 'apple'
-//   }
-// })
-// console.log(myVue.fruit)
-
-//root组件-案例一
-// new Vue({
-// 	el:'#app',
-// 	template:'<p>hellow!word{{word}}</p>',
-// 	data:{
-// 		word:' hellow,lucas'
-// 	}
-// })
-
-//root组件-案例二
-// new Vue({
-// 	el:'#app',
-// 	data:{
-// 		word:'hellow!'
-// 	}
-// })
-
-//root组件-案例三
 new Vue({
 	el:'#app',
+	// template:"<p>hellow!</p>",
 	data:{
 		word:'我是data'
-	},
-	components:{
-		'my-header':myHeader
 	}
+	,components:{
+		'my-footer':myfooter
+		,'my-body':myBody
+	}
+	,render:h => h(App)
 })
+

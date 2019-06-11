@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单页面应用</title>
+</head>
+	<body>
+		<div id="app">
+			<h1>双向数据绑定</h1>
+			<div>{{msg}}</div>
+			<div><input type="text" v-model='msg'></div>
+			<h1>单文件组件</h1>
+			<div>webpack+vue+loader打包工具</div>
+			<div>browserify+vueify打包工具</div>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		/**
+			双向数据绑定
+		*/
+		new Vue({
+			el:'#app'
+			,data:{
+				msg:'666'
+			}
+		})
+	</script>
+</html>
