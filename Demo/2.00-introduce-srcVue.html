@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>2.00VUE第一个Demo</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+		</div>
+		<dt>视图和脚本之间的分离</dt>
+
+	</body>
+</html>
+<script type="text/javascript">
+	console.info(new Vue());
+	var app=new Vue({
+		el:"#app",
+		data:{
+			message:'hellow,Vue!'
+		}
+	})
+
+</script>

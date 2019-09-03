@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>2.01VUE的数据和方法</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<dt>视图和脚本之间的分离</dt>
+		<dd>1.v-bind特性被称为指令 指令带有前缀v-表示我们是Vue提供的特殊特性,它们会在渲染DOM上应用特殊的响应行为</dd>
+		<dd></dd>
+		<div id="app">
+			{{a}}
+			<div :title='message'>鼠标悬停几秒钟查看此处动态绑定的提示信息</div>
+		</div>
+
+
+	</body>
+</html>
+<script type="text/javascript">
+	var data={a:1,message:'pageLoad'+new Date().toLocaleString()};
+	var app=new Vue({
+		el:"#app",
+		data:data
+	})
+	data.a="hi!Vue";
+	app.$data.message='change';
+</script>

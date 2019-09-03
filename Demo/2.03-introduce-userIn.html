@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>2.03处理用户输入</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>2.03信息反转按钮</dt>
+			<p>{{message}}</p>
+			<button @click='reverseMessage'>反转消息</button>
+			<dt>2.03处理用户输入</dt>
+			<p>{{newInfo}}</p>
+			<input type="text" v-model='newInfo'>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var data={message:'ABCDEFG',newInfo:'666'};
+	var app=new Vue({
+		el:"#app",
+		data:data,
+		methods:{
+			reverseMessage:function(){
+				this.message=this.message.split('').reverse().join('');
+			}
+		}
+	})
+</script>

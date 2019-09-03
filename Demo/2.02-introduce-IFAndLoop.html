@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>2.02条件与循环</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>2.02条件</dt>
+			<dd>数据绑定到DOM文本或特性,还可以绑定到DOM结构.此外Vue也提供一个强大的过渡效果系统,可以在Vue插入/更新/移除元素时自动应用过渡效果</dd>
+			<p v-if='seen'>现在你看到我了</p>
+			<dt>2.02循环</dt>
+			<ol>
+				<li v-for="todo in todos">
+					{{todo.text}}
+				</li>
+			</ol>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var data={seen:true,todos:[{text:'a'},{text:'b'},{text:'c'}]};
+	var app=new Vue({
+		el:"#app",
+		data:data
+	})
+</script>
