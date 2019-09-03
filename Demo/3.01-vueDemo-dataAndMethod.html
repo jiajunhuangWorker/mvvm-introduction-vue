@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>3.01数据与方法</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>3.01数据与方法</dt>
+			<dd>当一个 Vue 实例被创建时，它将 data 对象中的所有的属性加入到 Vue 的响应式系统中</dd>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var data={a:1}
+	var vm=new Vue({
+		data:data
+	})
+	console.info('vm.a ==data.a:',vm.a ==data.a)
+</script>
