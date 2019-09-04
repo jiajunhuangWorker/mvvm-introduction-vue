@@ -10,13 +10,34 @@
 		<div id="app">
 			<dt>3.01数据与方法</dt>
 			<dd>当一个 Vue 实例被创建时，它将 data 对象中的所有的属性加入到 Vue 的响应式系统中</dd>
+			<dd>当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值</dd>
+			<dd>当这些数据改变时，视图会进行重渲染,只有当实例被创建时就已经存在于 data 中的属性才是响应式的</dd>
+			<dd>阻止修改现有的属性，也意味着响应系统无法再追踪变化:Object.freeze</dd>
+			<dd>Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来</dd>
+
+			 <p>{{ foo }}</p>
+			<button v-on:click="foo = 'baz'">Change it</button>
 		</div>
 	</body>
 </html>
 <script type="text/javascript">
-	var data={a:1}
+	var data={foo:1}
+	//阻止修改现有的属性
+	// Object.freeze(data);
 	var vm=new Vue({
+		el:'#app',
 		data:data
 	})
-	console.info('vm.a ==data.a:',vm.a ==data.a)
+	console.info('vm.foo ==data.foo:',vm.foo ==data.foo)
+	data.foo=666;
+	console.info('data.foo=666那么vm.foo?',vm.foo)
+
+	console.info('document.getElementById(app)=== vm.$el',document.getElementById('app')=== vm.$el);
+	console.info('vm.$data=== data',vm.$data=== data);
+
+	/*监听新旧值*/
+	vm.$watch('foo',function(nVal,oVal){
+		console.info(nVal);
+		console.info(oVal);
+	})
 </script>
