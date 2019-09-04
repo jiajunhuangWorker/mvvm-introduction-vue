@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>5.00计算属性</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>5.00计算属性</dt>
+			<dd>模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护</dd>
+			<dd>对于任何复杂逻辑，你都应当使用计算属性</dd>
+
+			<dt>5.01基础例子</dt>
+			<dd></dd>
+
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var data={foo:666,seen:false,url:'http://www.baidu.com',attributeName:'href',eventName:'click'}
+	var vm=new Vue({
+		el:'#app',
+		data:data
+	})
+</script>

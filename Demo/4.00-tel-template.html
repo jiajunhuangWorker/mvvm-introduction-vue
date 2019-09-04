@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>4.00模板语法</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>4.00模板语法</dt>
+			<dd>Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据</dd>
+			<dd> Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析</dd>
+			<dd>底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数</dd>
+			<dd>结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少(提高了运行效率)</dd>
+
+			<dt>插值</dt>
+			<dt>一、文本</dt>
+			<dd>Mustache 标签将会被替代为对应数据对象上 msg 属性的值</dd>
+			<dd>绑定的数据对象上 msg 属性发生了改变，插值处的内容都会更新</dd>
+			<p>没使用v-once:{{msg}}</p>
+			<dd>通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上的其它数据绑定</dd>
+			<p v-once>使用了v-once: {{ msg }}</p>
+
+			<dt>二、原始html</dt>
+			<dd>双大括号会将数据解释为普通文本，而非 HTML 代码</dd>
+			<dd>输出真正的 HTML，你需要使用 v-html 指令</dd>
+			<p>Using mustaches: {{ rawHtml }}</p>
+			<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+			<dd>不能使用 v-html 来复合局部模板，因为 Vue 不是基于字符串的模板引擎,用户界面 (UI)，组件更适合作为可重用和可组合的基本单位</dd>
+			<dd>站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击,只对可信内容使用 HTML 插值，绝不要对用户提供的内容使用插值</dd>
+
+			<dt>三、特性</dt>
+			<dd>Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令</dd>
+			<p v-bind:id='dynamicId'>ID</p>
+			<dd>isButtonDisabled 的值是 null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的button 元素中</dd>
+				<button v-bind:disabled="isButtonDisabled">Button</button>
+
+			<dt>四、使用JavaScript 表达式</dt>
+			<dd>在我们的模板中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持</dd>
+			<dd>表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析,每个绑定都只能包含单个表达式，所以下面的例子都不会生效</dd>
+			{{ message.split('').reverse().join('') }}
+			{{number+1}}
+			{{ok?'yes':'no'}}
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var data={foo:666,msg:'message',rawHtml:'秀一秀',dynamicId:'ide',isButtonDisabled:false,message:'abcdef',number:1,ok:false}
+	var vm=new Vue({
+		el:'#app',
+		data:data,
+	})
+</script>
