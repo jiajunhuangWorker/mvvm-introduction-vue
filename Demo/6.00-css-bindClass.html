@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>6.00class与style绑定</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+		<style type="text/css">
+			.active{
+				color:yellow;
+			}
+			.error{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<dt>6.00class与style绑定</dt>
+			<dd>操作元素的 class 列表和内联样式是数据绑定的一个常见需求</dd>
+			<dd>我们可以用 v-bind 处理它们：只需要通过表达式计算出字符串结果即可</dd>
+			<dd>v-bind 用于 class 和 style 时，Vue.js 做了专门的增强,表达式结果的类型除了字符串之外，还可以是对象或数组</dd>
+
+			<dt>对象语法</dt>
+			<dd>v-bind:class 一个对象，以动态地切换 class：</dd>
+			<p class='abc' :class="{active:isActive,error:hasError}">:class isActive类名和error类名</p>
+			<p :class="classObject">classObject</p>
+
+			<dt>数组语法</dt>
+			<dd><div v-bind:class="[activeClass, errorClass]">我是数组语法显示形式</div></dd>
+			<dd><div v-bind:class="[{active:isActive},errorClass]">我是数组语法显示形式</div></dd>
+
+			<dt>用在组件上</dt>
+			<dd><my-component class='bzm'></my-component></dd>
+			<dd><my-component :class="{active:isActive}"></my-component></dd>
+		</div>
+	</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script type="text/javascript">
+	var data={
+		isActive:true,
+		hasError:false,
+		error:true,
+		activeClass: 'active',
+		errorClass: 'text-danger'
+	}
+	Vue.component('my-component',{
+		template:'<p class="foo bar">hi</p>'
+	})
+	var vm=new Vue({
+		el:'#app',
+		data:data,
+		computed:{
+			classObject:function(){
+				return {'textDanger abc':this.error}
+			}
+		}
+	})
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>7.00条件渲染</title>
+		<script type="text/javascript" src="../src/js/VUE.js"></script>
+		<link rel="stylesheet" type="text/css" href="../src/css/globalBase.css">
+	</head>
+	<body>
+		<div id="app">
+			<dt>7.00条件渲染</dt>
+			<dd>v-if 指令用于条件性地渲染一块内容,这块内容只会在指令的表达式返回 truthy 值的时候被渲染(必须将它添加到一个元素上)</dd>
+			<dd><h1 v-if='awesome'>Vue is awesome!</h1><h1 v-else>oh! no</h1></dd>
+
+			<dt>在 template 元素上使用 v-if 条件渲染分组</dt>
+			<template v-if='ok'>
+				<h1>title</h1>
+				<p>page1</p>
+				<p>page2</p>
+			</template>
+
+			<dt>v-else</dt>
+			<div v-if='Math.random() > 0.5'>
+				now you see me
+			</div>
+			<div v-else>
+				now you don't
+			</div>
+
+			<dt>v-else-if</dt>
+			<dd>
+				<div v-if="type === 'A'">
+				  A
+				</div>
+				<div v-else-if="type === 'B'">
+				  B
+				</div>
+				<div v-else-if="type === 'C'">
+				  C
+				</div>
+				<div v-else>
+				  Not A/B/C
+				</div>
+			</dd>
+
+			<dt>用 key 管理可复用的元素</dt>
+			<dd>Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染</dd>
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript">
+	var data={awesome:false,type:'C'}
+	var vm=new Vue({
+		el:'#app',
+		data:data
+	})
+</script>

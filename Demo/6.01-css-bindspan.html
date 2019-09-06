@@ -9,14 +9,17 @@
 	<body>
 		<div id="app">
 			<dt>6.01绑定内嵌样式</dt>
-
 			<dd>v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象</dd>
+
 			<dt>对象语法</dt>
 			<div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">666</div>
 			<div v-bind:style="styleObject">123</div>
 
 			<dt>数组语法</dt>
 			<dd><div v-bind:style="[baseStyles, overridingStyles]">数组语法</div></dd>
+
+			<dt>自动添加前缀</dt>
+			<dd>使用需要添加浏览器引擎前缀的css属性时,vue会自动侦测并添加相应的前缀</dd>
 
 			<dt>多重性</dt>
 			<dd>从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值</dd>
