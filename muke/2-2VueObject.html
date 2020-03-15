@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<my-header></my-header>
+		<my-footer></my-footer>		
+	</div>
+</body>
+</html>
+<script src="../src/js/vue.js"></script>
+<script>
+	Vue.component('my-header',{
+		template:"<div>this is my header</div>"
+		
+	})
+	var footerChild={
+		template:"<div>this is my footer child</div>"
+	}
+	var footer={
+		template:"<div>{{d}}{{f}}this is my footer <my-footer-child></my-footer-child>{{f}}</div>"
+		,components:{
+			'my-footer-child':footerChild
+		}
+		,data:function(){
+			/*
+			引用赋值问题
+			*/
+			return{
+				f:168,
+				d:2
+			}
+		}
+	}
+	new Vue({
+		el:'#app'
+		// ,template:"<p>hellow!world{{word}}</p>"
+		,data:{
+			word:'hellow!'
+		},
+		components:{
+			'my-footer':footer
+		}
+	})
+</script>
