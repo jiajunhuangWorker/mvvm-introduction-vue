@@ -9,7 +9,7 @@
 		<div>-------------------</div>
 
 		<solt name="header"></solt>
-		
+
 		<solt name="footer"></solt>
 	</div>
 </template>

@@ -1,52 +1,25 @@
 <template>
   <div id="app">
-    <!-- 父组件传递数据给子组件 -->
-    <input type="text" v-model.number="myVal">
-    <component-a :my-value="myVal"></component-a>
-    <!-- 通过属性去进行渲染componentA能随时换成其他组件-->
-    <!-- 传入参数大小写不敏感 -->
-    <p :is="comToRender" number='5'></p>
-    <!-- 传递数组对象 -->
-    <p :is="comToRender" :person='person'></p>
+  <!-- 自定义指令
+    两种方法
+    一种是directives   局部的自定义指令
+    Vue.directives     全局使用的指令
+  -->
+  <p v-css="{color:'red','font-size':'24px'}">hellow world</p>
 
-    <!--接收子组件传递过来的事件 -->
-    <p :is="comToRender" @my-event="getMyEvent"></p>
-
-    <!-- 插槽功能 -->
-    <p :is="comToRender" @my-event="getMyEvent">
-
-      <div slot="header">i a header</div>
-      
-      <div slot="footer">i a footer</div>
-    </p>
-
+  <input type="text" name="" v-focus>
+  <router-view></router-view>
+  <router-link :to="{path:'apple'}">toApple</router-link>
+  <router-link :to="{path:'banner'}">toBanner</router-link>
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import componentA from './components/a'
 
 export default {
-  components:{
-    componentA
-  }
-  ,name: 'App'
-  ,data(){
+  data(){
     return {
-      comToRender:"component-a"
-      ,myVal:""
-      ,person:[{
-        name:'XW'
-        ,old:18
-      },{
-        name:'XZ'
-        ,old:20
-      }]
-    }
-  }
-  ,methods:{
-    getMyEvent(val){
-      console.info('i got my event'+val)
+
     }
   }
 }
@@ -61,4 +34,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
