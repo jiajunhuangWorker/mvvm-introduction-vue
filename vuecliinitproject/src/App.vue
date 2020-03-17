@@ -1,25 +1,32 @@
 <template>
   <div id="app">
-  <!-- 自定义指令
-    两种方法
-    一种是directives   局部的自定义指令
-    Vue.directives     全局使用的指令
-  -->
-  <p v-css="{color:'red','font-size':'24px'}">hellow world</p>
-
-  <input type="text" name="" v-focus>
-  <router-view></router-view>
-  <router-link :to="{path:'apple'}">toApple</router-link>
-  <router-link :to="{path:'banner'}">toBanner</router-link>
+    <!-- 
+      vueX
+      状态管理
+      多个组件同时发生改变的时候就需要状态管理
+     -->
+     {{totalPrice}}
+     <totalBtn></totalBtn>  
+     <totalBtn2></totalBtn2>
   </div>
 </template>
 <script>
 import Vue from 'vue'
-
+import totalBtn from './components/totalBtn'
+import totalBtn2 from './components/totalBtn2'
 export default {
-  data(){
+  components:{
+    totalBtn,totalBtn2
+  }
+  ,data(){
     return {
-
+      
+    }
+  }
+  ,computed:{
+    totalPrice(){
+      return this.$store.getters.getTotal
+      // return this.$store.state.totalPrice
     }
   }
 }

@@ -1,8 +1,9 @@
 <template>
 	<div>
 		i am apple
-		<h2>{{$route.params}}</h2>
+		<!-- <h2>{{$route.params}}</h2> -->
 		<button @click='getParam'>get param</button>
+		<router-view></router-view>
 	</div>
 </template>
 <script>
