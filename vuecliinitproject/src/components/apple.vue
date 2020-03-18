@@ -2,8 +2,8 @@
 	<div>
 		i am apple
 		<!-- <h2>{{$route.params}}</h2> -->
-		<button @click='getParam'>get param</button>
-		<router-view></router-view>
+		<!-- <button @click='getParam'>get param</button>
+		<router-view></router-view> -->
 	</div>
 </template>
 <script>

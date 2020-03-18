@@ -14,25 +14,28 @@ let router = new VRouter({
 		{
 		/*重定向*/
 			path:'/'
-			,redirect:'/apple'
+			,redirect:'apple'
 		}
 		,{
 			path:'/apple'
-			,component:{
-				viewA:Apple,
-				viewB:redApple
-			}
-			,name:"applePage"
+			// ,component:{
+			// 	viewa:Apple,
+			// 	viewb:redApple
+			// }
+			,component:Apple
+			,name:"apple"
 			,children:[
 				{
-					path:'red'
+					path:'/red'
+					,name:'appleRed'
 					,component:redApple
 				}
 			]
 		}
 		,{
-			path:'/banner',
-			component:Banner
+			path:'/banner'
+			,name:"banner"
+			,component:Banner
 		}
 	]
 })
@@ -79,9 +82,7 @@ Vue.directive('css',{
 		}
 		arr=arr.join(';');
 		el.style.cssText = arr;
-		console.info('---------end-----------');
-		console.info('bind:',el)
-		console.info('bind:',bind)
+		
 	}
 	,inserted(el,bind){
 		console.info('inserted:',el)

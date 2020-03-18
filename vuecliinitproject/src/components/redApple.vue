@@ -10,10 +10,6 @@
 			return {
 
     		}
-		},methods:{
-			getParam(){
-				// console.info(this.$route.params);
-			}
 		}
 	}
 </script>
