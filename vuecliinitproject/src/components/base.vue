@@ -1,12 +1,13 @@
 <template>
-	<div>i am b</div>
+	<div>
+		{{hellow}}
+	</div>
 </template>
 <script>
-
 export default{
 	data(){
 		return {
-
+			hellow:'i am base component'
 		}
 	}
 }

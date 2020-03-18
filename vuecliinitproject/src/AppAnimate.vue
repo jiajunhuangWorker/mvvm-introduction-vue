@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <!-- 动画  -->
+    <div class="tt">css动画</div>
     <button @click = "show = !show">showBtn</button>
-    <!-- 过渡效果 -->
+    <div class="mtt">过渡效果</div>
     <transition name="fade">
       <div v-show = "show">i am show</div>
     </transition>
+    <div class="mtt">移动效果</div>
     <transition name="animate">
       <div v-show = "show">i am show</div>
     </transition>
     <!--
-      接受过度状态
+      过度状态指令
       v-if,v-show
      -->
-     <!--
-      切换
-      -->
+      <div class="tt">组件之间切换</div>
       <button @click='tagEvent'>过渡</button>
       <transition name="fade" mode="out-in">
         <div :is="currDom"></div>
@@ -24,6 +24,7 @@
         <p v-else key="2">no show333</p>
       </transition>
 
+      <div class="tt">js实现动画</div>
         <!-- js实现过渡
           @before-enter="beforeEnter"
           @enter="event" 两个参数
@@ -47,26 +48,23 @@
 </template>
 <script>
 import Vue from 'vue'
-import comA from './components/a'
-import comB from './components/b'
+import animateA from './components/animateA';
+import animateB from './components/animateB';
 export default {
-  components:{
-    comA
-    ,comB
-  }
+  components:{animateA,animateB}
   ,data(){
     return {
       show:true
-      ,currDom:'comB'
+      ,currDom:'animateA'
       ,shows:false
     }
   }
   ,methods:{
     tagEvent(){
-      if(this.currDom != "comB"){
-        this.currDom="comB";
+      if(this.currDom != "animateB"){
+        this.currDom="animateB";
       }else{
-        this.currDom="comA";
+        this.currDom="animateA";
       }
     }
     ,beforeEnter(el){
@@ -130,5 +128,17 @@ export default {
   position:absolute;
   top:0;
   left:0;
+}
+.mtt,.tt{
+  font-size:16px;
+  font-weight:700;
+  margin-top:30px;
+}
+.tt:first-child{
+  margin-top:0;
+}
+.mtt{
+  font-size:14px;
+  margin-top:15px;
 }
 </style>

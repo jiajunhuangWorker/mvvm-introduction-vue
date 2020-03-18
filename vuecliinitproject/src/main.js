@@ -4,7 +4,7 @@ import VRouter from '../node_modules/vue-router'
 import Apple from './components/apple'
 import Banner from './components/banner'
 import redApple from './components/redApple'
-import Vuex from '../node_modules/vuex' 
+import Vuex from '../node_modules/vuex'
 Vue.use(VRouter);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
@@ -14,7 +14,7 @@ let router = new VRouter({
 		{
 		/*重定向*/
 			path:'/'
-			,redirect:'/apple'	
+			,redirect:'/apple'
 		}
 		,{
 			path:'/apple'
@@ -61,7 +61,7 @@ let store = new Vuex.Store({
 			context.commit('increment',price);
 		},
 		reduce(context,price){
-			context.commit('decrement',price);	
+			context.commit('decrement',price);
 		}
 	}
 })
