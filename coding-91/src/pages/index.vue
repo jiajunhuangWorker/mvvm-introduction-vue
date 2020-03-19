@@ -41,7 +41,7 @@
             <p>{{ item.description }}</p>
             <div class="index-board-button">
               <router-link class="button" :to="{name: item.toKey}">立即购买</router-link>
-            </div>  
+            </div>
           </div>
         </div>
       </div>

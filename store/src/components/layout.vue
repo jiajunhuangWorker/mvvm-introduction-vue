@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <div class="app-header">
-      <img src="./assets/logo.png">
+  <div>
+     <div class="app-header">
+      <img src="../assets/logo.png">
       <ol class="headerFont">
         <li>登录</li>
         <li>注册</li>
@@ -9,25 +9,23 @@
       </ol>
     </div>
     <div class="app-content">
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <router-view></router-view>
     </div>
     <div class="app-footer">lucasStop</div>
   </div>
 </template>
 <script>
-console.log('App');
 export default {
   data(){
     return{
+
     }
   }
 }
 </script>
 
 <style lang='scss'>
-  $b-4e5a6d:#4e5a6d;//顶部底色
+$b-4e5a6d:#4e5a6d;//顶部底色
 $b-757e83:#757e83;//辅助文字
 $padding:0 15px;//基础padding
 *{
@@ -86,3 +84,4 @@ body{
   color:#fff;
 }
 </style>
+
