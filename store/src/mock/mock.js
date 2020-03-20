@@ -37,7 +37,7 @@ Mock.mock(/getSlides/, [
 ])
 
 Mock.mock(/getPrice/, {
-	'number|1-100': 100 
+	'number|1-100': 100
 })
 Mock.mock(/createOrder/, 'number|1-100')
 

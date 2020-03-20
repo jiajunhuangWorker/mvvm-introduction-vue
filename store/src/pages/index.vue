@@ -26,9 +26,9 @@
 		<div class="index-right">
 			<carousel :navigationEnabled="true" :perPage="1" :autoplay="true">
 	        <slide v-for="slide in slides" :key="slide.ky">
-	          <router-link :to="{name: slide.toKey}">
+	          <!-- <router-link :to="{name: slide.toKey}"> -->
 	            <img :src="slide.src">
-	          </router-link>
+	          <!-- </router-link> -->
 	        </slide>
 	      </carousel>
 	        <div class="index-board-list">
@@ -53,110 +53,21 @@ import axios from 'axios'
 import { Carousel, Slide } from 'vue-carousel'
 
 console.info('index.Vue')
-export default { 
+export default {
 	components: {
     	Carousel,
     	Slide
   	},
   data(){
     return{
-    	productList:{
-    		pc:{
-    			title:'PC产品'
-    			,list:[
-    				{
-    					name:'广告发布'
-    					,url:'http://www.baidu.com'
-    				},
-    				{
-    					name:'广告发布1'
-    					,url:'http://www.baidu.com'
-    					,hot:true
-    				},
-    				{
-    					name:'广告发布2'
-    					,url:'http://www.baidu.com'
-    				},
-    				{
-    					name:'广告发布3'
-    					,url:'http://www.baidu.com'
-    					,hot:true
-    				}
-    			]
-    		},
-    		app:{
-    			title:'手机应用类'
-    			,last:true
-    			,list:[
-    				{
-    					name:'广告发布'
-    					,url:'http://www.baidu.com'
-    				},
-    				{
-    					name:'广告发布1'
-    					,url:'http://www.baidu.com'
-    					,hot:true
-    				},
-    				{
-    					name:'广告发布2'
-    					,url:'http://www.baidu.com'
-    				},
-    				{
-    					name:'广告发布3'
-    					,url:'http://www.baidu.com'
-    				}
-    			]
-    		}
-    	}
-    	,newsList:[
-			{
-				title:'广告发布'
-				,url:'http://www.baidu.com'
-			},
-			{
-				title:'广告发布1'
-				,url:'http://www.baidu.com'
-				,hot:true
-			},
-			{
-				title:'广告发布2'
-				,url:'http://www.baidu.com'
-			},
-			{
-				title:'广告发布3'
-				,url:'http://www.baidu.com'
-				,hot:true
-			}
-		]
-		,boardList:[
-			{
-				title:'开放产品'
-				,id:'1'
-				,description:'开发产品是一款产品'
-				,saleout:false
-			},
-			{
-				title:'品牌营销'
-				,id:2
-				,description:'开发产品是一款产品2'
-				,saleout:false
-			},
-			{
-				title:'使命必达'
-				,id:3
-				,description:'开发产品是一款产品3'
-				,saleout:false
-			},
-			{
-				title:'开放'
-				,id:4
-				,description:'开发产品是一款产品4'
-				,saleout:false
-			}
-		]
+    productList:{}
+    ,newsList:[]
+		,boardList:[]
+    ,slides:[]
     }
   }
   ,mounted(){
+    //最新消息
   	axios.get('api/getNewsList')
     .then((res) => {
       console.log(res)
@@ -165,7 +76,35 @@ export default {
     .catch((error) => {
       console.log(error)
     })
+    //FourModal
+    axios.get('api/getBoardList')
+    .then((res) => {
+      console.log(res)
+      this.boardList = res.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    //产品列表
+    axios.get('api/getProductList')
+    .then((res) => {
+      console.log(res)
+      this.productList = res.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    //
+    axios.get('api/getSlides')
+    .then((res) => {
+      console.log(res)
+      this.slides = res.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
+
 }
 </script>
 
@@ -246,38 +185,6 @@ export default {
 }
 .index-board-hill .index-board-item-inner{
   background: url(../assets/images/4.png) no-repeat;
-}
-.index-board-1:before{
-	content:'';
-	display:block;
-	background:url(../assets/images/1.png) no-repeat;
-	width:100px;
-	height:100px;
-	float:left;
-}
-.index-board-2:before{
-	content:'';
-	display:block;
-	background:url(../assets/images/2.png) no-repeat;
-	width:100px;
-	height:100px;
-	float:left;
-}
-.index-board-3:before{
-	content:'';
-	display:block;
-	background:url(../assets/images/3.png) no-repeat;
-	width:100px;
-	height:100px;
-	float:left;
-}
-.index-board-4:before{
-	content:'';
-	display:block;
-	background:url(../assets/images/4.png) no-repeat;
-	width:100px;
-	height:100px;
-	float:left;
 }
 .index-board-item h2 {
   font-size: 18px;
