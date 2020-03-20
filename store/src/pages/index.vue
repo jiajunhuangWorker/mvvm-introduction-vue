@@ -49,8 +49,15 @@
 	</div>
 </template>
 <script>
+import axios from 'axios'
+import { Carousel, Slide } from 'vue-carousel'
+
 console.info('index.Vue')
-export default {
+export default { 
+	components: {
+    	Carousel,
+    	Slide
+  	},
   data(){
     return{
     	productList:{
@@ -148,6 +155,16 @@ export default {
 			}
 		]
     }
+  }
+  ,mounted(){
+  	axios.get('api/getNewsList')
+    .then((res) => {
+      console.log(res)
+      this.newsList = res.data.list
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 }
 </script>
