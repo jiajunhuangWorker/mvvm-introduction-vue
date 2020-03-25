@@ -24,13 +24,14 @@
 		    </div>
 		</div>
 		<div class="index-right">
-			<carousel :navigationEnabled="true" :perPage="1" :autoplay="true">
+			<!-- <carousel :navigationEnabled="true" :perPage="1" :autoplay="true">
 	        <slide v-for="slide in slides" :key="slide.ky">
-	          <!-- <router-link :to="{name: slide.toKey}"> -->
+	          <router-link :to="{name: slide.toKey}">
 	            <img :src="slide.src">
-	          <!-- </router-link> -->
+	          </router-link>
 	        </slide>
-	      </carousel>
+	      </carousel> -->
+        <slide :slides="slides" :inv=2000></slide>
 	        <div class="index-board-list">
 		       	<div
 		        class="index-board-item"
@@ -46,17 +47,23 @@
 		        </div>
 		    </div>
 		</div>
+    <dialog>
+      <p>222</p>
+    </dialog>
 	</div>
 </template>
 <script>
 import axios from 'axios'
+/**
 import { Carousel, Slide } from 'vue-carousel'
+**/
+
+import slide from '../components/slide'
 
 console.info('index.Vue')
 export default {
 	components: {
-    	Carousel,
-    	Slide
+      slide
   	},
   data(){
     return{

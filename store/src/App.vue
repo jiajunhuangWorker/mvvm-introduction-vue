@@ -1,11 +1,15 @@
 <template>
   <div id="app">
     <div class="app-header">
-      <img src="./assets/logo.png">
+      <router-link :to="{path:'/'}">
+        <img src="./assets/logo.png">
+      </router-link>
       <ol class="headerFont">
-        <li>登录</li>
-        <li>注册</li>
-        <li>关于</li>
+        <li>{{name}}</li>
+        <li v-if="name==''" @click="log">登录</li>
+        <li v-if="name==''" @click="reg">注册</li>
+        <li @click="aboutMe">关于</li>
+        <li v-if="name!=''" @click="back">退出</li>
       </ol>
     </div>
     <div class="app-content">
@@ -14,13 +18,57 @@
       </keep-alive>
     </div>
     <div class="app-footer">lucasStop</div>
+    <DiaLog :isShow="aboutShowState" @on-close="closeDialog('aboutShowState')">
+      <div>about</div>
+    </DiaLog>
+    <DiaLog :isShow="regShowState" @on-close="closeDialog('regShowState')">
+      <regForm></regForm>
+    </DiaLog>
+    <DiaLog :isShow="logShowState" @on-close="closeDialog('logShowState')">
+      <logForm @has-log='onSuccessLog'></logForm>
+    </DiaLog>
   </div>
 </template>
 <script>
+
+import DiaLog from "./components/dialog";
+import logForm from "./components/logForm";
+import regForm from "./components/regForm";
 console.log('App');
 export default {
+  components: {
+    DiaLog
+    ,logForm
+    ,regForm
+  },
   data(){
     return{
+    aboutShowState:false
+    ,regShowState:false
+    ,logShowState:false
+    ,name:''
+    }
+  },
+  methods:{
+    aboutMe(){
+      this.aboutShowState=true;
+    },
+    reg(){
+      this.regShowState=true;
+    },
+    log(){
+      this.logShowState=true;
+    },
+    closeDialog(attr){
+
+      this[attr]=false;
+    },
+    onSuccessLog(data){
+      this.name = data.username;
+      this.logShowState=false;
+    },
+    back(){
+      this.name='';
     }
   }
 }

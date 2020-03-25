@@ -139,3 +139,9 @@ Mock.mock(/getTableData/, {
       }
     ]
 })
+Mock.mock(/login/,{
+  "login":{
+    "username":'lucas'
+    ,"password":123
+  }
+})
