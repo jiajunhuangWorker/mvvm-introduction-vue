@@ -1,3 +1,12 @@
+<!--
+<carousel :navigationEnabled="true" :perPage="1" :autoplay="true">
+          <slide v-for="slide in slides" :key="slide.ky">
+            <router-link :to="{name: slide.toKey}">
+              <img :src="slide.src">
+            </router-link>
+          </slide>
+        </carousel>
+ -->
 <template>
 	<div class="index-wrap">
 		<div class="index-left">
@@ -24,13 +33,7 @@
 		    </div>
 		</div>
 		<div class="index-right">
-			<!-- <carousel :navigationEnabled="true" :perPage="1" :autoplay="true">
-	        <slide v-for="slide in slides" :key="slide.ky">
-	          <router-link :to="{name: slide.toKey}">
-	            <img :src="slide.src">
-	          </router-link>
-	        </slide>
-	      </carousel> -->
+
         <slide :slides="slides" :inv=2000></slide>
 	        <div class="index-board-list">
 		       	<div
@@ -54,9 +57,6 @@
 </template>
 <script>
 import axios from 'axios'
-/**
-import { Carousel, Slide } from 'vue-carousel'
-**/
 
 import slide from '../components/slide'
 
@@ -83,7 +83,7 @@ export default {
     .catch((error) => {
       console.log(error)
     })
-    //FourModal
+
     axios.get('api/getBoardList')
     .then((res) => {
       console.log(res)
@@ -101,7 +101,7 @@ export default {
     .catch((error) => {
       console.log(error)
     })
-    //
+
     axios.get('api/getSlides')
     .then((res) => {
       console.log(res)

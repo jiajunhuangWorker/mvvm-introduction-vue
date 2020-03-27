@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @click="resetComponent">
     <div class="app-header">
       <router-link :to="{path:'/'}">
         <img src="./assets/logo.png">
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-
+import { eventBus } from './eventBus'
 import DiaLog from "./components/dialog";
 import logForm from "./components/logForm";
 import regForm from "./components/regForm";
@@ -60,7 +60,6 @@ export default {
       this.logShowState=true;
     },
     closeDialog(attr){
-
       this[attr]=false;
     },
     onSuccessLog(data){
@@ -69,6 +68,9 @@ export default {
     },
     back(){
       this.name='';
+    },
+    resetComponent(){
+      eventBus.$emit('reset-component')
     }
   }
 }

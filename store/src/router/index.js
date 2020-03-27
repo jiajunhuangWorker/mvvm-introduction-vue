@@ -6,7 +6,7 @@ import analysis from '@/pages/detail/analysis'
 import count from '@/pages/detail/count'
 import publish from '@/pages/detail/publish'
 import forecast from '@/pages/detail/forecast'
-
+import OrderList from '@/pages/orderList'
 
 Vue.use(Router)
 console.log('index.js');
@@ -44,6 +44,10 @@ export default new Router({
 	      	component: forecast
       	}
       ]
+    },{
+      path:'/orderList'
+      ,name:'orderList'
+      ,component:OrderList
     }
   ]
 })

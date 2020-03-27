@@ -126,13 +126,13 @@ Mock.mock(/getProductList/, {
         }
 })
 Mock.mock(/getTableData/, {
-    "total": 25,
-    "list|25": [
+    "total": 5,
+    "list|5": [
       {
         "orderId": "@id",
         "product": "@ctitle(4)",
         "version": "@ctitle(3)",
-        "period": "@integer(1,5)年",
+        "period": "@integer(10, 100)年",
         "buyNum": "@integer(1,8)",
         "date": "@date()",
         "amount": "@integer(100, 500)元"

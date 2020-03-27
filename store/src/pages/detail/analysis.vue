@@ -134,7 +134,7 @@ export default {
   },
   data () {
     return {
-      buyNum: 0,
+      buyNum: 1,
       buyType: {},
       versions: [],
       period: {},

@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted () {
-    eventBus.$on('reset-status', () => {
+    eventBus.$on('reset-component', () => {
       console.log(123)
       this.isDrop = false
     })
@@ -41,12 +41,12 @@ export default {
       event.stopPropagation()
       this.isDrop = !this.isDrop
       if (!this.isDrop) {
-        eventBus.$emit('reset-status')
+        eventBus.$emit('reset-component')
       }
     },
     chooseSelection (index) {
       this.nowIndex = index
-      eventBus.$emit('reset-status')
+      eventBus.$emit('reset-component')
       this.$emit('on-change', this.selections[this.nowIndex])
     }
   }
