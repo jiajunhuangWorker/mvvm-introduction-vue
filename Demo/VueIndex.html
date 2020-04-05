@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue中的指令</title>
+
+</head>
+<body>
+	<div id="root">
+		<!-- v-if -->
+		<div v-if="vif">v-if不展示dom结构</div>
+		<div v-else>v-if设置为false展示dom结构</div>
+		<!-- v-show -->
+		<div v-show="vShow">v-show 显示display:none</div>
+
+		<div v-if="vifFont === 'a'">this is a</div>
+		<div v-else-if="vifFont === 'b'">this is b</div>
+		<div v-else-if="vifFont === 'c'">this is c</div>
+		<div v-else>no user choose</div>
+
+		<!-- 表单
+			input 尝试去复用dom的内容
+			解决方法是给dom 给 key值去区分唯一性
+		  -->
+		<div v-if="fromShow">用户名 <input type="text" placeholder="用户名" key="user"></div>
+		<div v-else>密码<input type="text" placeholder="密码" key="password"></div>
+
+
+		<!--
+		列表渲染
+		key 提高性能
+		尽量别用index 去作为key 值
+
+		不能通过下标形式去添加列表数据
+		push
+		pop
+		shift
+		unshift
+		splice
+			vm.list.splice(1,1,{id:333,text:111})
+		sort
+		reverse
+
+		改变引用
+			去修改数组的引用地址
+
+		 -->
+		 <div v-for="(item,index) in list" :key="index">
+		 	{{index}} --- {{item}}
+		 </div>
+
+		<!-- template
+			占位符不显示标签
+		-->
+		<template v-for="(item,index) in list" >
+			<div>{{index}} --- {{item}}</div>
+			<span>{{index}}</span>
+		</template>
+
+		<!-- 循环对象
+			改变引用
+			去修改数组的引用地址
+			vm.userInfo ={
+				name:"lucas"
+				,old:"16"
+				,gender:"male"
+				,address:"123"
+			}
+			vm set 去设置新的值
+		 -->
+		<div v-for="(item,key,index) in userInfo">
+		{{item}} --- {{key}} ---{{index}}
+		</div>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#root'
+		,data:{
+			vif:false
+			,vShow:false
+			,vifFont:"c"
+			,fromShow:true
+			,list:[
+				"hellow"
+				,"lucas"
+				,"meet"
+				,"you"
+			]
+			,userInfo:{
+				name:"lucas"
+				,old:"16"
+				,gender:"male"
+			}
+		}
+	})
+	/*
+	对象添加数据
+	*/
+	Vue.set(vm.userInfo,"address","beijing")
+	vm.$set(vm.userInfo,"try","222")
+	/*
+	数组添加数据
+	改变数组引用
+	内置方法
+	*/
+	Vue.set(vm.list,1,6666);
+	vm.$set(vm.list,3,888);
+</script>
+<style type="text/css">
+	.active{
+		color:#f40;
+	}
+</style>

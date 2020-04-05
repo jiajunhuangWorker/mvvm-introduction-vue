@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 父子组件得数据传递</title>
+
+</head>
+<body>
+	<div id="app">
+		<counter :count="0" @change="handleSun"></counter>
+		<counter :count="0" @change="handleSun"></counter>
+		<div>{{sun}}</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+var counter = {
+	/*
+		单向数据流概念
+		Vue父组件传递数据给子组件,子组件接收到数据后可以使用父组件传递过来的内容但是不能修改父组件得内容,需要传回给父组件
+		原因
+		假设父组件传递了一个对象形式给子组件,而子组件修改了该数据,假设该数据其他组件也使用了!那么引用了同一份数据的组件会同时发生改变那后果会很严重,因为对象是引用数据类型所以会导致这个问题
+
+		解决方法
+		在data函数中创建一个独立的对象返回给组件
+	*/
+	props:['count']
+	,data(){
+		return {
+			number:this.count
+		}
+	}
+	,template:'<div @click="handleClick">{{number}}</div>'
+	,methods:{
+		handleClick(){
+			this.number+=2;
+			this.$emit('change',this.number,333)
+		}
+	}
+}
+var vm = new Vue({
+	el:"#app"
+	,components:{
+		counter
+	}
+	,data:{
+		sun:0
+	}
+	,methods:{
+		handleSun(step,step2){
+			console.info('step:',step,'   step2:',step2)
+			this.sun+=step;
+		}
+	}
+})
+</script>

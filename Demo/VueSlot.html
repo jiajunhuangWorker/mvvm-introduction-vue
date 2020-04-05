@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue插槽slot</title>
+
+</head>
+<body>
+	<div id="root">
+		<child :com="'<p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p><p>hellow!father</p>'"></child>
+		<child2>
+			<div slot="header">
+				<span>你好啊Header</span>
+			</div>
+			<div slot="footer">
+				<span>你好啊Footer</span>
+			</div>
+		</child2>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/**
+		使用slot之前
+		问题1.结构要有一个冗余的结构 template包裹会失效
+		问题2.不便于阅读html结构
+	**/
+	Vue.component('child',{
+		props:{
+			com:{
+				typeof:String
+			}
+		}
+		,template:  '<div>'
+						+'<div>hellow</div>'
+						+'<div v-html = "this.com"></div>'
+					+'</div>'
+
+	})
+	/**
+		使用slot之后
+	**/
+	Vue.component('child2',{
+		props:{
+			com:{
+				typeof:String
+			}
+		}
+		,template:  '<div>'
+						+'<slot name="header">默认的值Header</slot>'
+						+'<div>hellow</div>'
+						+'<slot name="footer">默认的值Footer</slot>'
+					+'</div>'
+
+	})
+	var vm = new Vue({
+		el:"#root"
+	})
+
+</script>

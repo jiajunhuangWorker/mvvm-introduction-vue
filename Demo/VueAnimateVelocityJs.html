@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue中使用js动画与velocity.js的结合</title>
+
+</head>
+<body>
+	<div id="root">
+		<!--
+			//进场动画
+			@before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="hanleAfterEnter"
+			//出场动画
+			@before-leave="handleBeforeEnter" @leave="handleEnter" @after-leave="hanleAfterEnter"
+		 -->
+		<transition name='fade' @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="hanleAfterEnter" >
+			<div v-if="show">hellow world</div>
+		</transition>
+		<button @click='handleClick'>动画</button>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/velocity-animate@2.0/velocity.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#root'
+		,data:{
+			show:true
+		}
+		,methods:{
+			handleClick(){
+				this.show = !this.show
+			},
+			handleBeforeEnter(el){
+				el.style.opacity = 0 ;
+			},
+			handleEnter(el,done){
+				Velocity(el,{opacity:1},{duration:2000,complete:done})
+			},
+			hanleAfterEnter(el){
+				console.info('Animate End')
+			}
+		}
+	})
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVVM模式</title>
+
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model='inpueVal'>
+		<button @click="handleBtn">提交</button>
+		<ul>
+			<li v-for="item in list">{{item}}</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/*
+		MVVM
+		M层
+		data
+		V层
+		dom中
+		VM层
+		vue 去进行监听到M的变化去映射到V层 关注M层
+		VM是通过虚拟dom和ES5中的
+	*/
+	var app = new Vue({
+		el:"#app",
+		data:{
+			list:["第一课的内容","第二课的内容"]
+			,inpueVal:""
+		},
+		methods:{
+			handleBtn(){
+				this.list.push(this.inpueVal);
+				this.inpueVal = '';
+			}
+		}
+	})
+	console.info(app.$data.list)
+</script>

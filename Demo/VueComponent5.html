@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 给组件绑定原生事件</title>
+
+</head>
+<body>
+	<div id="app">
+		<!--
+			click 是自定义的事件
+
+			执行的顺序是先把事件传递给子组件然后子组件在通过$emit传递回给父组件
+		 -->
+		<child @click="handleClick"></child>
+		<!-- native 直接调用原生事件 -->
+		<child2 @click.native="handleClick"></child2>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+
+Vue.component('child',{
+	/*
+		原生的事件click
+	*/
+	template:"<div @click='handleChildClick'>child组件1</div>"
+	,methods:{
+		handleChildClick(){
+			alert('child Click');
+			this.$emit('click')
+		}
+	}
+})
+
+Vue.component('child2',{
+	/*
+		原生的事件click
+	*/
+	template:"<div>child2组件2</div>"
+})
+
+var vm = new Vue({
+	el:"#app"
+	,data:{
+	},
+	methods:{
+		handleClick(){
+			alert('father Click')
+		}
+	}
+})
+</script>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue计算属性,方法和侦听器</title>
+
+</head>
+<body>
+	<div id="root">
+		 {{firstName+ " " +lastName}}
+		<div>{{"computedFullName:" + computedFullName}}</div>
+		<div>{{age}}</div>
+		<!-- <div>{{"methodsFull:" + methodsFull()}}</div> -->
+		<div>{{"watchFullName:" + watchFullName}}</div>
+		<div>{{"computedFullName2:" + computedFullName2}}</div>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/**
+		fullName 想展示Dell和Lee拼接数据
+	**/
+	var vm = new Vue({
+		el:"#root",
+		data:{
+			firstName:"Dell"
+			,lastName:"Lee"
+			,age:28
+			,computedNum:0
+			,watchNum:0
+			,methodsNum:0
+			,watchFullName:""
+			,computedNum2:0
+		}
+		,computed:{
+			/*
+				计算属性
+				内置缓存
+
+			*/
+			computedFullName(){
+				console.info("->computed",(++this.computedNum),"次<-");
+				return '<div>'+this.firstName +"     "+this.lastName+'</div>';
+			}
+			,computedFullName2:{
+				get(){
+					console.info("->computed2",(++this.computedNum2),"次<-");
+					return this.firstName +"     "+this.lastName
+				},
+				 set(newValue) {
+			      var names = newValue.split(' ')
+			      this.firstName = names[0]
+			      this.lastName = names[names.length - 1]
+			    }
+			}
+		}
+		,methods:{
+			methodsFull(){
+				console.info("-->methods:",(++this.methodsNum),"次<--");
+				return this.firstName +"     "+this.lastName
+			}
+		}
+		,watch:{
+			firstName(){
+				console.info("--->watch:(firstName)",(++this.watchNum),"次<---");
+				this.watchFullName=this.firstName +"     "+this.lastName
+			}
+			,lastName(){
+				console.info("--->watch:(lastName)",(++this.watchNum),"次<---");
+				this.watchFullName=this.firstName +"     "+this.lastName
+			}
+		}
+	})
+	vm.$data.age=666;
+	/*
+		为了证明计算属性有缓存
+	*/
+	vm.$data.firstName = 123;
+</script>

@@ -75,7 +75,7 @@ export default {
   }
   ,mounted(){
     //最新消息
-  	axios.get('api/getNewsList')
+  	axios.get('hqms/public/hasLogin')
     .then((res) => {
       console.log(res)
       this.newsList = res.data.list
@@ -92,6 +92,7 @@ export default {
     .catch((error) => {
       console.log(error)
     })
+
     //产品列表
     axios.get('api/getProductList')
     .then((res) => {

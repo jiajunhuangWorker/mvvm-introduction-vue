@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue生命周期函数</title>
+
+</head>
+<body>
+	<div id="root"></div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/**
+		生命周期函数就是Vue 实例在某一个时间点自动执行的函数
+	**/
+	var vm = new Vue({
+		el:"#root",
+		template:"<div>{{msg}}</div>",
+		data:{
+			msg:'hellow!world'
+		}
+		,beforeCreate(){
+			// 初始化事件并且生命周期
+			console.info('beforeCreate->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,created(){
+			// 初始化data,初始化注入并校验
+			console.info('created->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,beforeMount(){
+			//模板和数据相结合即将挂载到dom上
+			console.info('beforeMount->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,mounted(){
+			//当模板渲染到页面之后就立刻执行mounted
+			console.info('mounted->','this.$el:',this.$el,'this.$data:',this.$data)
+			//更改数据
+			console.info(this.$data.msg=666)
+			// 销毁
+			// console.info(this.$destroy());
+		}
+		,beforeUpdate(){
+			//msg数据变化之前
+			console.info('beforeUpdate->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,updated(){
+			//msg数据变化之后
+			console.info('updated->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,beforeDestroy(){
+			//当模板销毁之前
+			console.info('beforeDestroy->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+		,destroyed(){
+			//销毁模板
+			console.info('destroyed->','this.$el:',this.$el,'this.$data:',this.$data)
+		}
+	})
+
+</script>

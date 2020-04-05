@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue中多个元素或组件的过度</title>
+	<style type="text/css">
+	.fade-enter,.fade-leave-to{
+		opacity:0;
+	}
+	.fade-enter-active,.fade-leave-active{
+		transition:opacity 1s;
+	}
+	</style>
+</head>
+<body>
+	<div id="root">
+		<!--
+			vue尽量不使用dom导致运动失效
+			解决方法:用key 去区分
+
+			区分动画的进场合出场的顺序
+			mode out-in  in-out
+		 -->
+		<transition name='fade' mode='out-in'>
+			<div v-if="show" key='0'>hellow world</div>
+			<div v-else key='1'>Bye World</div>
+		</transition>
+		<transition name='fade' mode='out-in'>
+			<child v-if="show"></child>
+			<child-one v-else></child-one>
+		</transition>
+		<transition name='fade' mode='out-in'>
+			<!-- 动态组件 -->
+			<component :is="type"></component>
+		</transition>
+		<button @click='handleClick'>动画</button>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	Vue.component('child',{
+		template:'<div>child</div>'
+	})
+	Vue.component('child-one',{
+		template:'<div>child-one</div>'
+	})
+	var vm = new Vue({
+		el:'#root'
+		,data:{
+			show:true
+			,type:'child'
+		}
+		,methods:{
+			handleClick(){
+				this.show = !this.show
+				this.type = this.type === 'child' ? 'child-one' : 'child'
+			}
+		}
+	})
+</script>

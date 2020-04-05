@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue中列动画封装</title>
+	<style type="text/css">
+		.v-enter,.v-leave-to{
+			opacity:0;
+		}
+		.v-enter-active,.v-leave-active{
+			transition:opacity 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="root">
+		<!--
+			transition-group
+			相当于每个div 都加了 transition 然后进行过渡
+		 -->
+		<fade >
+			<div v-for="(item,index) in list" :key="item.id">{{item.name}}</div>
+		</fade>
+		<fade-elm :show="show">
+			<div>hellow!world</div>
+		</fade-elm>
+		<button @click="addItem">add</button>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	Vue.component('fade',{
+		template:'<transition-group><slot></slot><transition-group>'
+	})
+	Vue.component('fade-elm',{
+		props:['show']
+		,template:'<transition @before-enter="beforeEnter" @enter="enter"><slot v-if="show"></slot></transition>'
+		,methods:{
+			beforeEnter(el){
+				el.style.color = 'red';
+			}
+			,enter(el,done){
+				setTimeout(() => {
+					el.style.color='green';
+					done();
+				},2000)
+			}
+		}
+	})
+	var vm = new Vue({
+		el:'#root'
+		,data:{
+			list:[]
+			,listItem:0
+			,show:true
+		}
+		,methods:{
+			addItem(){
+				this.show = !this.show
+				this.list.push({
+					id:++this.listItem
+					,name:'hellow!  ('+this.listItem+')'
+				})
+			}
+		}
+	})
+</script>

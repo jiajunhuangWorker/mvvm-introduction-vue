@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 非父子组件间的传值</title>
+
+</head>
+<body>
+	<div id="app">
+		<!--
+			父子组件传值
+				props和$emit
+			非父子组件传值
+			vuex
+			(发布订阅模式/总线机制/Bus/观察者模式)
+		 -->
+		 <child content="Dell" @change='getClick'></child>
+		 <child content="Lee" @change='getClick'></child>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+Vue.prototype.bus = new Vue();
+
+Vue.component('child',{
+	props:{
+		content:{
+			type:[String]
+		}
+	}
+	,template:"<div @click='handleClick'>{{selfContent}}</div>"
+	,methods:{
+		handleClick(){
+			this.selfContent = this.content
+			this.bus.$emit('change',this.selfContent)
+			this.$emit('change',this.content)
+		}
+	},
+	data(){
+		return {
+			selfContent:this.content
+		}
+	}
+	,mounted(){
+		// 监听
+		var _this=this
+		this.bus.$on('change',function(msg){
+			console.info(msg)
+			_this.selfContent = msg;
+		})
+	}
+})
+var vm = new Vue({
+	el:"#app"
+	,methods:{
+		getClick(e){
+			console.info(e)
+		}
+	}
+})
+</script>

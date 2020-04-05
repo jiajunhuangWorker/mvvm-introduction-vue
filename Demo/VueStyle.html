@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue中的样式绑定</title>
+
+</head>
+<body>
+	<div id="root">
+		<!-- class 对象绑定 -->
+		<div @click='handleDivClick' :class="{active:isActive}">hellow,world</div>
+		<!-- class 数组形式 -->
+		<div @click='handleDivClick' :class="[activeArr,activeArr2]">hellow,world</div>
+		<!-- style -->
+		<div :style="styleObj">hellow,world</div>
+		<div :style="[styleObj,{textAlign:'center'}]">hellow,world</div>
+	</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#root'
+		,data:{
+			isActive:false
+			,activeArr:"active acti"
+			,activeArr2:"defined"
+			,styleObj:{
+				color:"black"
+				,fontSize:"20px"
+			}
+		},methods:{
+			handleDivClick(){
+				//class 对象绑定
+				this.isActive=!this.isActive;
+				//class 数组形式
+				this.activeArr=this.activeArr.indexOf('active')!=-1?"":"active";
+				// style
+				this.styleObj.color = this.styleObj.color === "black" ? "red" : "bloack";
+			}
+		}
+	})
+</script>
+<style type="text/css">
+	.active{
+		color:#f40;
+	}
+</style>

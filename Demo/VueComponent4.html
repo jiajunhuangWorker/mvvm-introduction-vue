@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 组件参数校验与非props特性</title>
+
+</head>
+<body>
+	<div id="app">
+		<try val = "杀破狼" :num = "'avx'" ></try>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+
+Vue.component('try',{
+	/**
+		组件参数校验
+		props特性:
+		父组件传递的属性和子组件拥有的属性是对应的关系叫做props特性
+		1.结构上传递的属性在dom中是不会显示出来的
+		2.通过this 或者插值表达式直接显示出来
+		非peops特性
+		1.假设父组件传递了值但是在props没有注册那么就会报错
+		2.属性都会显示到子组件 标签之中
+	*/
+	props:{
+		val:String
+		,num:[Number,String]
+		,obj:{
+			type:[Object,Number]
+			,required:false //true必传的参数
+			,default:111111 //默认值
+			,validator(value){//输入的校验
+				console.info(value.toString().length)
+				return value.toString().length>5
+			}
+		}
+	}
+	,template:'<div @click="tryType">{{val + num + obj}}</div>'
+	,methods:{
+		tryType(){
+			console.info(typeof this.num,' :  ',this.num)
+		}
+	}
+})
+var vm = new Vue({
+	el:"#app"
+	,data:{
+	}
+})
+</script>

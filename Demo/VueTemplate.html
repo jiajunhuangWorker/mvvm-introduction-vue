@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue模板语法</title>
+
+</head>
+<body>
+	<div id="root">
+		<!-- 插值表达式 -->
+		{{msg + 'Lee'}}
+		<!-- 指令div -->
+		<div v-text='msg + "Lee"'></div>
+		<div v-html='msg + "Lee"'></div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/**
+		每个组件都是vue 的实例
+	**/
+	var vm = new Vue({
+		el:"#root",
+		data:{
+			msg:'<h1>hellow!world</h1>'
+		}
+	})
+	console.info(vm)
+	console.info(vm.$data.msg)
+	console.info(vm.$el)
+</script>

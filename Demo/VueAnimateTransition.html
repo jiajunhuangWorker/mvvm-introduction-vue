@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue中同时使用过渡和动画</title>
+	<style type="text/css">
+		.fade-enter,.fade-leave-to{
+			opacity:0;
+		}
+		.fade-leave-active,.fade-enter-active{
+			transition: opacity 3s;
+		}
+	</style>
+</head>
+<body>
+	<div id="root">
+		<!-- animated库
+			timer
+			因为animate 是1s 之后结束动画效果,.fade-leave-active 执行是3s  Vue 不知道动画按照哪个时间为准  所以设置 type="transition"  表示它会按照.fade-leave-active执行
+
+			:duration="3000" 时长动画
+
+			:duration="{enter:5000,leave:10000}"  动画进场和离场的时间
+
+
+		-->
+		<transition type="transition" name='fade' appear enter-active-class="animated swing fade-enter-active" leave-active-class="animated shake fade-leave-active" appear-active-class="animated swing" >
+			<div v-if="show">hellow world</div>
+		</transition>
+		<button @click='handleClick'>动画</button>
+	</div>
+</body>
+</html>
+<link rel="stylesheet" type="text/css" href="../node_modules/animate.css/animate.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#root'
+		,data:{
+			show:true
+		}
+		,methods:{
+			handleClick(){
+				this.show = !this.show
+			}
+		}
+	})
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVP数据模式</title>
+
+</head>
+<body>
+	<div id="app">
+		<input type="text" id="input">
+		<button id="btn">提交</button>
+		<ul id="ulList"></ul>
+	</div>
+</body>
+</html>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	/*
+		MVP
+		P
+		jquery 控制层
+		V
+		dom结构 展示层
+		M
+		发送ajax 去请求数据
+	*/
+	function Btn(){
+
+	}
+	$.extend(Btn.prototype,{
+		init:function(){
+			this.bindEvenent();
+		},
+		bindEvenent:function(){
+			var btn =$('#btn');
+			btn.on('click',$.proxy(this.handleBtnClick,this));
+		},
+		handleBtnClick:function(){
+			var inputElem=$('#input');
+			var ulElm=$('#ulList');
+			var getInVal=inputElem.val();
+			ulElm.append('<li>'+getInVal+'</li>');
+			inputElem.val('');
+		}
+	})
+	var initBtn=new Btn();
+	console.info(initBtn)
+	initBtn.init();
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 组件使用的细节点</title>
+
+</head>
+<body>
+	<div id="app">
+		<!-- 如果直接使用row或者lis 组件将会出现结构问题 使用is 解决 -->
+		<table>
+			<tbody>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+			</tbody>
+		</table>
+
+		<ul>
+			<li is="lis" ></li>
+			<li is="lis"></li>
+			<li is="lis"></li>
+		</ul>
+
+		<!-- ref 使用dom 结构 -->
+		<div ref = "hello"  @click="hanleClick">
+			hellow world
+		</div>
+
+		<!-- ref 使用组件上 -->
+		<try-ref ref="one" @change="handleChange"></try-ref>
+		<try-ref ref="two" @change="handleChange"></try-ref>
+		<div>{{sun}}</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	/*
+		非根组件中定义data 时候data必须是函数
+		这样好处是多个组件之间值不会出现冲突情况,数据不共享
+	**/
+	Vue.component('row',{
+		data(){
+			return {
+				component:"this is row"
+			}
+		}
+		,template:'<tr><td>{{component}}</td></tr>'
+	})
+	Vue.component('lis',{
+		template:'<li>this is li</li>'
+	})
+	Vue.component('tryRef',{
+		data(){
+			return {
+				num:0
+			}
+		}
+		,template:'<div @click="componentRef">{{num}}</div>'
+		,methods:{
+			componentRef(){
+				this.num++;
+				this.$emit('change')
+			}
+		}
+	})
+var vm = new Vue({
+	el:"#app"
+	,data:{
+		sun:0
+	},
+	methods:{
+		hanleClick(){
+			//获取到了dom 节点的内容 相当于id
+			console.info(this.$refs.hello.innerHTML);
+		}
+		,handleChange(){
+			console.info(this.$refs.one)
+			console.info(this.$refs.two)
+			console.info(this.$refs.one.num)
+			console.info(this.$refs.two.num)
+			this.sun=this.$refs.two.num+this.$refs.one.num
+		}
+	}
+})
+</script>

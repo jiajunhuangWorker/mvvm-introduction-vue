@@ -1,0 +1,24 @@
+{
+  "name": "initglobalusepackage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiajunhuangWorker/js-mvvm-vue.git"
+  },
+  "author": "lucas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiajunhuangWorker/js-mvvm-vue/issues"
+  },
+  "homepage": "https://github.com/jiajunhuangWorker/js-mvvm-vue#readme",
+  "dependencies": {
+    "animate": "^1.0.0",
+    "animate.css": "https://github.com/daneden/animate.css.git",
+    "velocity": "^0.7.2"
+  }
+}
