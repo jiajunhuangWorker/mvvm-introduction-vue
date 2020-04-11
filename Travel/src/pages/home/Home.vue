@@ -1,12 +1,15 @@
 <template>
-<div>
-hellow!
-</div>
+  <div>
+    <home-header/>
+  </div>
 </template>
 
 <script type= "text/javascript">
-export default{name: 'Home'
+import HomeHeader from './components/Header'
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader
+  }
 }
 </script>
-
-<style></style>
